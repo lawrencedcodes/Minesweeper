@@ -12,30 +12,28 @@ public class Main {
                     next = null;
                 }
             }
-            LinkedList insert(LinkedList list, int data) {
-                Node newnode = new Node(data);
-                if(list.head==null) {
-                    list.head = newnode;
-                } else {
-                    Node last = list.head;
-                    while(last.next!=null) {
-                        last = last.next;
-                    }
-                    last.next = newnode;
+            LinkedList printList(LinkedList list) {
+                Node current = list.head;
+                while(current!=null) {
+                    System.out.println(current.data);
+                    current = current.next;
                 }
                 return list;
             }
-            void printlist(LinkedList list) {
-                if (list.head==null) {
-                    System.out.println("empty list");
-                } else {
-                    Node last = list.head;
-                    while(last!=null) {
-                        System.out.println(last.data);
-                        last=last.next;
-                    }
+            public boolean hasCycle(Node headNode) {
+                if(headNode==null) {
+                    return false;
                 }
+                Node slow = headNode;
+                Node fast = headNode.next;
+                while(slow!=fast) {
+                    if(fast==null || fast.next==null) return false;
+                    slow = slow.next;
+                    fast = fast.next.next;
+                }
+                return true;
             }
         }
+
     }
 }
